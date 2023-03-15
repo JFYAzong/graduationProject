@@ -11,7 +11,7 @@
 		
 		<view class="wrap">
 			<view class="row" v-for="(item,index) in noticeIntro" :key="index">
-				<newsbox :item="item" @click.native="goDetail"></newsbox>
+				<newsbox :item="item" @click.native="goDetail(item)"></newsbox>
 			</view>
 		</view>
 		
@@ -61,9 +61,10 @@ export default {
 			// 	this.chartData = JSON.parse(JSON.stringify(res));
 			// },
 			
-			goDetail(){
+			goDetail(item){
+				console.log(item)
 				uni.navigateTo({
-					url:"/pages/detail/detail"
+					url:`/pages/detail/detail?cid=${item.cid}&title=${item.title}&author=${item.author}&time=${item.time}&pic=${item.pic}`
 				})
 			},
 			getNoticeData(){
@@ -71,7 +72,6 @@ export default {
 					url:"http://localhost:8000/app/hesuan/notice_intro/list",
 					method: 'POST',
 					success:res => {
-						console.log(res)
 						this.noticeIntro = res.data.data
 					}
 				})

@@ -1,21 +1,21 @@
 <template>
 	<view class="detail">
 		<view class="title">
-			音乐学院核酸检测
+			{{title}}
 		</view>
 		<view class="info">
 			<view class="authot">
-				编辑：许长瑞
+				编辑：{{author}}
 			</view>
 			<view class="time">
-				2023.3.13
+				{{time}}
 			</view>
 		</view>
 		<view class="content">
 			请音乐学院211的同学们于2023.3.13 15：30，在新校区中区操场进行核酸检测。
 		</view>
 		<view class="pic">
-			<image src="../../static/temp.jpg" mode=""></image>
+			<image :src="pic" mode=""></image>
 		</view>
 	</view>
 </template>
@@ -24,8 +24,19 @@
 	export default {
 		data() {
 			return {
-				
+				cid:null,
+				title:null,
+				author:null,
+				time:null,
+				pic:null
 			}
+		},
+		onLoad(e){
+			this.cid = e.cid
+			this.title = e.title
+			this.author = e.author
+			this.time = e.time
+			this.pic = e.pic
 		},
 		methods: {
 			
