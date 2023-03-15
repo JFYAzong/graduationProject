@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "核酸检测管理系统",
+  "usingComponents": {
+    "uchart": "/components/uchart/uchart",
+    "newsbox": "/components/newsbox/newsbox"
+  }
+}

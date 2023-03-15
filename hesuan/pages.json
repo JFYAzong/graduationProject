@@ -1,0 +1,69 @@
+{
+	"easycom": {
+	  "autoscan": true,
+	  "custom": {
+	    "^uni-(.*)": "@/components/uni-$1.vue", // 匹配components目录内的vue文件
+	    "^vue-file-(.*)": "packageName/path/to/vue-file-$1.vue" // 匹配node_modules内的vue文件
+	  }
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "核酸检测管理系统"
+			}
+		},{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "核酸报告查询"
+			}
+		},{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+	    ,{
+            "path" : "pages/detail/detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "公告详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#007AFF",
+		"borderStyle": "black",
+		"backgroundColor": "#F8F8F8",
+		"list": [
+			{
+				"pagePath": "pages/home/home",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/homeSelect.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/search/search",
+				"iconPath": "static/search.png",
+				"selectedIconPath": "static/search_select.png",
+				"text": "查询"
+			}, 
+			{
+				"pagePath": "pages/my/my",
+				"iconPath": "static/my.png",
+				"selectedIconPath": "static/mySelect.png",
+				"text": "我的"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
