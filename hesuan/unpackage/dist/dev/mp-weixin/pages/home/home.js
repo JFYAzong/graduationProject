@@ -208,12 +208,12 @@ var _default = {
     };
   },
   onLoad: function onLoad() {
-    this.getNoticeData();
+    this.getNoticeIntro();
   },
   methods: {
     // getData(){
     // 	if(this.select === '人数统计'){
-    // 		let res = {888
+    // 		let res = {
     // 			series: [{
     // 				data: [{
     // 					"name": "已做",
@@ -245,7 +245,7 @@ var _default = {
         url: "/pages/detail/detail?cid=".concat(item.cid, "&title=").concat(item.title, "&author=").concat(item.author, "&time=").concat(item.time, "&pic=").concat(item.pic)
       });
     },
-    getNoticeData: function getNoticeData() {
+    getNoticeIntro: function getNoticeIntro() {
       var _this = this;
       uni.request({
         url: "http://localhost:8000/app/hesuan/notice_intro/list",

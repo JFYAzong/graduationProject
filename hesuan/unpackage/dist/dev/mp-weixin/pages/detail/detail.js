@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -179,10 +179,21 @@ var _default = {
     this.author = e.author;
     this.time = e.time;
     this.pic = e.pic;
+    this.getNoticeDetail();
   },
-  methods: {}
+  methods: {
+    getNoticeDetail: function getNoticeDetail() {
+      uni.request({
+        url: "http://localhost:8000/app/hesuan/notice_detail/info?cid=" + this.cid,
+        success: function success(res) {
+          console.log(res);
+        }
+      });
+    }
+  }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

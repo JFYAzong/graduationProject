@@ -19,6 +19,9 @@ export class NoticeIntroEntity extends BaseEntity {
   @Column({ comment: '发布时间' })
   time: string;
 
+  @Column({ comment: '公告详情' })
+  detail: string;
+
   @Column({ comment: '地点照片', nullable: true })
   pic: string;
 }

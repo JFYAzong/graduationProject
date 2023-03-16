@@ -29,12 +29,12 @@ export default {
 			}
 		},
 		onLoad() {
-			this.getNoticeData();
+			this.getNoticeIntro();
 		},
 		methods: {
 			// getData(){
 			// 	if(this.select === '人数统计'){
-			// 		let res = {888
+			// 		let res = {
 			// 			series: [{
 			// 				data: [{
 			// 					"name": "已做",
@@ -67,7 +67,7 @@ export default {
 					url:`/pages/detail/detail?cid=${item.cid}&title=${item.title}&author=${item.author}&time=${item.time}&pic=${item.pic}`
 				})
 			},
-			getNoticeData(){
+			getNoticeIntro(){
 				uni.request({
 					url:"http://localhost:8000/app/hesuan/notice_intro/list",
 					method: 'POST',

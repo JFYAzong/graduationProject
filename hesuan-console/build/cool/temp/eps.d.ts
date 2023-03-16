@@ -2474,7 +2474,7 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
-	interface HesuanNotice_intro {
+	interface HesuanNotice_detail {
 		/**
 		 * 删除
 		 */
@@ -2486,19 +2486,19 @@ declare namespace Eps {
 		/**
 		 * 单个信息
 		 */
-		info(data?: any): Promise<NoticeIntroEntity>;
+		info(data?: any): Promise<NoticeDetailEntity>;
 		/**
 		 * 分页查询
 		 */
 		page(data?: any): Promise<{
 			pagination: { size: number; page: number; total: number };
-			list: NoticeIntroEntity[];
+			list: NoticeDetailEntity[];
 			[key: string]: any;
 		}>;
 		/**
 		 * 列表查询
 		 */
-		list(data?: any): Promise<NoticeIntroEntity[]>;
+		list(data?: any): Promise<NoticeDetailEntity[]>;
 		/**
 		 * 新增
 		 */
@@ -2531,7 +2531,7 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
-	interface HesuanNotice_detail {
+	interface HesuanNotice_intro {
 		/**
 		 * 删除
 		 */
@@ -2543,19 +2543,19 @@ declare namespace Eps {
 		/**
 		 * 单个信息
 		 */
-		info(data?: any): Promise<NoticeDetailEntity>;
+		info(data?: any): Promise<NoticeIntroEntity>;
 		/**
 		 * 分页查询
 		 */
 		page(data?: any): Promise<{
 			pagination: { size: number; page: number; total: number };
-			list: NoticeDetailEntity[];
+			list: NoticeIntroEntity[];
 			[key: string]: any;
 		}>;
 		/**
 		 * 列表查询
 		 */
-		list(data?: any): Promise<NoticeDetailEntity[]>;
+		list(data?: any): Promise<NoticeIntroEntity[]>;
 		/**
 		 * 新增
 		 */
@@ -2819,7 +2819,7 @@ declare namespace Eps {
 		};
 		demo: { goods: DemoGoods };
 		dict: { info: DictInfo; type: DictType };
-		hesuan: { notice_intro: HesuanNotice_intro; notice_detail: HesuanNotice_detail };
+		hesuan: { notice_detail: HesuanNotice_detail; notice_intro: HesuanNotice_intro };
 		space: { info: SpaceInfo; type: SpaceType };
 		task: { info: TaskInfo };
 	};
