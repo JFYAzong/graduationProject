@@ -242,7 +242,7 @@ var _default = {
     goDetail: function goDetail(item) {
       console.log(item);
       uni.navigateTo({
-        url: "/pages/detail/detail?cid=".concat(item.cid, "&title=").concat(item.title, "&author=").concat(item.author, "&time=").concat(item.time, "&pic=").concat(item.pic)
+        url: "/pages/detail/detail?id=".concat(item.id)
       });
     },
     getNoticeIntro: function getNoticeIntro() {

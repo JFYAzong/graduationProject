@@ -64,7 +64,7 @@ export default {
 			goDetail(item){
 				console.log(item)
 				uni.navigateTo({
-					url:`/pages/detail/detail?cid=${item.cid}&title=${item.title}&author=${item.author}&time=${item.time}&pic=${item.pic}`
+					url:`/pages/detail/detail?id=${item.id}`
 				})
 			},
 			getNoticeIntro(){

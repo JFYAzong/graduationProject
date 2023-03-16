@@ -886,10 +886,6 @@ declare namespace Eps {
 		 */
 		id?: number;
 		/**
-		 * 公告id
-		 */
-		cid?: number;
-		/**
 		 * 公告标题
 		 */
 		title?: string;
@@ -901,6 +897,10 @@ declare namespace Eps {
 		 * 发布时间
 		 */
 		time?: string;
+		/**
+		 * 公告详情
+		 */
+		detail?: string;
 		/**
 		 * 地点照片
 		 */

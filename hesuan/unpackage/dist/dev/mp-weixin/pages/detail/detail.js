@@ -166,27 +166,29 @@ exports.default = void 0;
 var _default = {
   data: function data() {
     return {
-      cid: null,
+      id: null,
       title: null,
       author: null,
       time: null,
-      pic: null
+      pic: null,
+      detail: null
     };
   },
   onLoad: function onLoad(e) {
-    this.cid = e.cid;
-    this.title = e.title;
-    this.author = e.author;
-    this.time = e.time;
-    this.pic = e.pic;
+    this.id = e.id;
     this.getNoticeDetail();
   },
   methods: {
     getNoticeDetail: function getNoticeDetail() {
+      var _this = this;
       uni.request({
-        url: "http://localhost:8000/app/hesuan/notice_detail/info?cid=" + this.cid,
+        url: "http://localhost:8000/app/hesuan/notice_intro/info?id=" + this.id,
         success: function success(res) {
-          console.log(res);
+          _this.title = res.data.data.title;
+          _this.author = res.data.data.author;
+          _this.time = res.data.data.time;
+          _this.pic = res.data.data.pic;
+          _this.detail = res.data.data.detail;
         }
       });
     }

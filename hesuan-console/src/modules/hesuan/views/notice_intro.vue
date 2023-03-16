@@ -31,13 +31,15 @@
 <script lang="ts" name="hesuan-notice_intro" setup>
 import { useCrud, useTable, useUpsert } from "@cool-vue/crud";
 import { useCool } from "/@/cool";
+import { provide, ref } from "vue";
 
+const picUploadSuccess = ref(0);
+provide("picUploadSuccess", picUploadSuccess);
 const { service } = useCool();
 
 // cl-upsert 配置
 const Upsert = useUpsert({
 	items: [
-		{ label: "公告id", prop: "cid", required: true, component: { name: "el-input" } },
 		{ label: "公告标题", prop: "title", required: true, component: { name: "el-input" } },
 		{ label: "发布者", prop: "author", required: true, component: { name: "el-input" } },
 		{
@@ -49,6 +51,7 @@ const Upsert = useUpsert({
 			},
 			required: true
 		},
+		{ label: "公告详情", prop: "detail", required: true, component: { name: "el-input" } },
 		{ label: "地点照片", prop: "pic", component: { name: "cl-upload" } }
 	]
 });
@@ -58,10 +61,10 @@ const Table = useTable({
 	columns: [
 		{ type: "selection" },
 		{ label: "ID", prop: "id" },
-		{ label: "公告id", prop: "cid" },
 		{ label: "公告标题", prop: "title" },
 		{ label: "发布者", prop: "author" },
 		{ label: "发布时间", prop: "time" },
+		{ label: "公告详情", prop: "detail" },
 		{ label: "地点照片", prop: "pic", component: { name: "cl-image", props: { size: 60 } } },
 		{ label: "创建时间", prop: "createTime" },
 		{ label: "更新时间", prop: "updateTime" },

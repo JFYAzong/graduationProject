@@ -12,7 +12,7 @@
 			</view>
 		</view>
 		<view class="content">
-			请音乐学院211的同学们于2023.3.13 15：30，在新校区中区操场进行核酸检测。
+			{{detail}}
 		</view>
 		<view class="pic">
 			<image :src="pic" mode=""></image>
@@ -24,27 +24,28 @@
 	export default {
 		data() {
 			return {
-				cid:null,
+				id:null,
 				title:null,
 				author:null,
 				time:null,
-				pic:null
+				pic:null,
+				detail:null
 			}
 		},
 		onLoad(e){
-			this.cid = e.cid
-			this.title = e.title
-			this.author = e.author
-			this.time = e.time
-			this.pic = e.pic
+			this.id = e.id
 			this.getNoticeDetail()
 		},
 		methods: {
 			getNoticeDetail(){
 				uni.request({
-					url:"http://localhost:8000/app/hesuan/notice_detail/info?cid=" + this.cid,
+					url:"http://localhost:8000/app/hesuan/notice_intro/info?id=" + this.id,
 					success:res => {
-						console.log(res)
+						this.title = res.data.data.title
+						this.author = res.data.data.author
+						this.time = res.data.data.time
+						this.pic = res.data.data.pic
+						this.detail = res.data.data.detail
 					}
 				})
 			}

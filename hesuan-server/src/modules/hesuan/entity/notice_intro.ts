@@ -7,9 +7,7 @@ import { Column } from 'typeorm';
  */
 @EntityModel('notice_intro')
 export class NoticeIntroEntity extends BaseEntity {
-  @Column({ comment: '公告id' })
-  cid: number;
-
+  
   @Column({ comment: '公告标题' })
   title: string;
 
