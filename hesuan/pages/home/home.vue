@@ -2,12 +2,12 @@
 	<view class="container">
 		<view class="switcher">
 			<view class="switcher__item" v-for="(item, index) of ['人数统计','报告统计']" :key="index"
-				:class="{ 'switcher__item-active': currentIndex === index }" @click="currentIndex = index;select = item;">
+				:class="{ 'switcher__item-active': currentIndex === index }" @click="currentIndex = index;select = item;getData()">
 				{{ item }}
 			</view>
 		</view>
 		
-		<uchart class="charts" chartData = chartData></uchart>
+		<uchart class="charts" :chartData = chartData :key="select"></uchart>
 		
 		<view class="wrap">
 			<view class="row" v-for="(item,index) in noticeIntro" :key="index">
@@ -25,41 +25,49 @@ export default {
 				currentIndex:0,
 				select:'人数统计',
 				chartData:{},
-				noticeIntro:[]
+				noticeIntro:[],
+				done:null,
+				undone:null,
+				positive:null,
+				negative:null,
 			}
 		},
 		onLoad() {
 			this.getNoticeIntro();
+			this.getHesuanCount();
+			setTimeout(()=>{
+				this.getData()
+			},2000)
 		},
 		methods: {
-			// getData(){
-			// 	if(this.select === '人数统计'){
-			// 		let res = {
-			// 			series: [{
-			// 				data: [{
-			// 					"name": "已做",
-			// 					"value": 50
-			// 				}, {
-			// 					"name": "未做",
-			// 					"value": 30
-			// 				}]
-			// 			}]
-			// 		};
-			// 	}else{
-			// 		res = {
-			// 			series: [{
-			// 				data: [{
-			// 					"name": "阴性",
-			// 					"value": 76
-			// 				}, {
-			// 					"name": "阳性",
-			// 					"value": 4
-			// 				}]
-			// 			}]
-			// 		};
-			// 	}
-			// 	this.chartData = JSON.parse(JSON.stringify(res));
-			// },
+			getData(){
+				if(this.select === '人数统计'){
+					var res = {
+						series: [{
+							data: [{
+								"name": "已做",
+								"value": this.done
+							}, {
+								"name": "未做",
+								"value": this.undone
+							}]
+						}]
+					};
+				}else{
+					res = {
+						series: [{
+							data: [{
+								"name": "阴性",
+								"value": this.negative
+							}, {
+								"name": "阳性",
+								"value": this.positive
+							}]
+						}]
+					};
+				}
+				this.chartData = JSON.parse(JSON.stringify(res));
+			},
 			
 			goDetail(item){
 				console.log(item)
@@ -73,6 +81,18 @@ export default {
 					method: 'POST',
 					success:res => {
 						this.noticeIntro = res.data.data
+					}
+				})
+			},
+			getHesuanCount(){
+				uni.request({
+					url:"http://localhost:8000/app/hesuan/hesuan_count/list",
+					method: 'POST',
+					success:res => {
+						this.done = res.data.data[0].done
+						this.undone = res.data.data[0].undone
+						this.positive = res.data.data[0].positive
+						this.negative = res.data.data[0].negative
 					}
 				})
 			}

@@ -137,6 +137,7 @@ var render = function () {
       var _temp, _temp2
       _vm.currentIndex = index
       _vm.select = item
+      _vm.getData()
     }
   }
 }
@@ -204,41 +205,50 @@ var _default = {
       currentIndex: 0,
       select: '人数统计',
       chartData: {},
-      noticeIntro: []
+      noticeIntro: [],
+      done: null,
+      undone: null,
+      positive: null,
+      negative: null
     };
   },
   onLoad: function onLoad() {
+    var _this = this;
     this.getNoticeIntro();
+    this.getHesuanCount();
+    setTimeout(function () {
+      _this.getData();
+    }, 2000);
   },
   methods: {
-    // getData(){
-    // 	if(this.select === '人数统计'){
-    // 		let res = {
-    // 			series: [{
-    // 				data: [{
-    // 					"name": "已做",
-    // 					"value": 50
-    // 				}, {
-    // 					"name": "未做",
-    // 					"value": 30
-    // 				}]
-    // 			}]
-    // 		};
-    // 	}else{
-    // 		res = {
-    // 			series: [{
-    // 				data: [{
-    // 					"name": "阴性",
-    // 					"value": 76
-    // 				}, {
-    // 					"name": "阳性",
-    // 					"value": 4
-    // 				}]
-    // 			}]
-    // 		};
-    // 	}
-    // 	this.chartData = JSON.parse(JSON.stringify(res));
-    // },
+    getData: function getData() {
+      if (this.select === '人数统计') {
+        var res = {
+          series: [{
+            data: [{
+              "name": "已做",
+              "value": this.done
+            }, {
+              "name": "未做",
+              "value": this.undone
+            }]
+          }]
+        };
+      } else {
+        res = {
+          series: [{
+            data: [{
+              "name": "阴性",
+              "value": this.negative
+            }, {
+              "name": "阳性",
+              "value": this.positive
+            }]
+          }]
+        };
+      }
+      this.chartData = JSON.parse(JSON.stringify(res));
+    },
     goDetail: function goDetail(item) {
       console.log(item);
       uni.navigateTo({
@@ -246,12 +256,25 @@ var _default = {
       });
     },
     getNoticeIntro: function getNoticeIntro() {
-      var _this = this;
+      var _this2 = this;
       uni.request({
         url: "http://localhost:8000/app/hesuan/notice_intro/list",
         method: 'POST',
         success: function success(res) {
-          _this.noticeIntro = res.data.data;
+          _this2.noticeIntro = res.data.data;
+        }
+      });
+    },
+    getHesuanCount: function getHesuanCount() {
+      var _this3 = this;
+      uni.request({
+        url: "http://localhost:8000/app/hesuan/hesuan_count/list",
+        method: 'POST',
+        success: function success(res) {
+          _this3.done = res.data.data[0].done;
+          _this3.undone = res.data.data[0].undone;
+          _this3.positive = res.data.data[0].positive;
+          _this3.negative = res.data.data[0].negative;
         }
       });
     }
