@@ -2,46 +2,57 @@
 	<view class="container">
 		<view class="switcher">
 			<view class="switcher__item" v-for="(item, index) of ['人数统计','报告统计']" :key="index"
-				:class="{ 'switcher__item-active': currentIndex === index }" @click="currentIndex = index;select = item;getData()">
+				:class="{ 'switcher__item-active': currentIndex === index }"
+				@click="currentIndex = index;select = item;getData()">
 				{{ item }}
 			</view>
 		</view>
-		
-		<uchart class="charts" :chartData = chartData :key="select"></uchart>
-		
+
+		<uchart class="charts" :chartData=chartData :key="select"></uchart>
+
 		<view class="wrap">
 			<view class="row" v-for="(item,index) in noticeIntro" :key="index">
 				<newsbox :item="item" @click.native="goDetail(item)"></newsbox>
 			</view>
 		</view>
-		
+
 	</view>
 </template>
 
-<script>
-export default {
+<script>	
+	import {
+		mapMutations
+	} from 'vuex'
+	
+	export default {		
 		data() {
 			return {
-				currentIndex:0,
-				select:'人数统计',
-				chartData:{},
-				noticeIntro:[],
-				done:null,
-				undone:null,
-				positive:null,
-				negative:null,
+				currentIndex: 0,
+				select: '人数统计',
+				chartData: {},
+				noticeIntro: [],
+				done: null,
+				undone: null,
+				positive: null,
+				negative: null,
 			}
 		},
+		// created() {
+		// },
 		onLoad() {
 			this.getNoticeIntro();
 			this.getHesuanCount();
-			setTimeout(()=>{
+		},
+		onReady() {
+			this.getUserCode(),
+			setTimeout(() => {
 				this.getData()
-			},2000)
+			}, 1000)
 		},
 		methods: {
-			getData(){
-				if(this.select === '人数统计'){
+			...mapMutations('m_user', ['updateUserInfo']),
+			getData() {
+				if (this.select === '人数统计') {
 					var res = {
 						series: [{
 							data: [{
@@ -53,7 +64,7 @@ export default {
 							}]
 						}]
 					};
-				}else{
+				} else {
 					res = {
 						series: [{
 							data: [{
@@ -68,33 +79,51 @@ export default {
 				}
 				this.chartData = JSON.parse(JSON.stringify(res));
 			},
-			
-			goDetail(item){
+
+			goDetail(item) {
 				console.log(item)
 				uni.navigateTo({
-					url:`/pages/detail/detail?id=${item.id}`
+					url: `/pages/detail/detail?id=${item.id}`
 				})
 			},
-			getNoticeIntro(){
+			getNoticeIntro() {
 				uni.request({
-					url:"http://localhost:8000/app/hesuan/notice_intro/list",
+					url: "http://localhost:8000/app/hesuan/notice_intro/list",
 					method: 'POST',
-					success:res => {
+					success: res => {
 						this.noticeIntro = res.data.data
 					}
 				})
 			},
-			getHesuanCount(){
+			getHesuanCount() {
 				uni.request({
-					url:"http://localhost:8000/app/hesuan/hesuan_count/list",
+					url: "http://localhost:8000/app/hesuan/hesuan_count/list",
 					method: 'POST',
-					success:res => {
+					success: res => {
 						this.done = res.data.data[0].done
 						this.undone = res.data.data[0].undone
 						this.positive = res.data.data[0].positive
 						this.negative = res.data.data[0].negative
 					}
 				})
+			},
+			getUserCode() {
+				const that = this
+				uni.login({
+					provider: 'weixin', //使用微信登录
+					success: function(loginRes) {
+						// console.log('loginRes',loginRes)
+						uni.request({
+							url: 'http://localhost:8000/app/hesuan/get_openid/getopenid',
+							method: 'POST',
+							data: loginRes,
+							success: (res) => {
+								console.log(res.data)
+								that.updateUserInfo(res.data)
+							}
+						})
+					}
+				});
 			}
 		}
 	}
@@ -131,12 +160,13 @@ export default {
 				}
 			}
 		}
-		
-		.wrap{
+
+		.wrap {
 			padding: 30rpx;
-			.row{
+
+			.row {
 				border-bottom: 1px dotted #efefef;
-				padding:15rpx 0;
+				padding: 15rpx 0;
 			}
 		}
 	}

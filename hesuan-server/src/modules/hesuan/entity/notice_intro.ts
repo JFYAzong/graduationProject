@@ -2,9 +2,7 @@ import { EntityModel } from '@midwayjs/orm';
 import { BaseEntity } from '@cool-midway/core';
 import { Column } from 'typeorm';
 
-/**
- * 各市旅游资源
- */
+
 @EntityModel('notice_intro')
 export class NoticeIntroEntity extends BaseEntity {
   

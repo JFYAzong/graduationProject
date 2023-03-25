@@ -2482,55 +2482,55 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
-	interface HesuanNotice_detail {
+	interface HesuanHesuan_count {
 		/**
-		 * list
-		 */
-		list(data?: any): Promise<any[]>;
-		/**
-		 * page
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: any[];
-			[key: string]: any;
-		}>;
-		/**
-		 * info
-		 */
-		info(data?: any): Promise<any>;
-		/**
-		 * update
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * delete
+		 * 删除
 		 */
 		delete(data?: any): Promise<any>;
 		/**
-		 * add
+		 * 修改
+		 */
+		update(data?: any): Promise<any>;
+		/**
+		 * 单个信息
+		 */
+		info(data?: any): Promise<HesuanCountEntity>;
+		/**
+		 * 分页查询
+		 */
+		page(data?: any): Promise<{
+			pagination: { size: number; page: number; total: number };
+			list: HesuanCountEntity[];
+			[key: string]: any;
+		}>;
+		/**
+		 * 列表查询
+		 */
+		list(data?: any): Promise<HesuanCountEntity[]>;
+		/**
+		 * 新增
 		 */
 		add(data?: any): Promise<any>;
 		/**
 		 * 权限标识
 		 */
 		permission: {
-			list: string;
-			page: string;
-			info: string;
-			update: string;
 			delete: string;
+			update: string;
+			info: string;
+			page: string;
+			list: string;
 			add: string;
 		};
 		/**
 		 * 权限状态
 		 */
 		_permission: {
-			list: boolean;
-			page: boolean;
-			info: boolean;
-			update: boolean;
 			delete: boolean;
+			update: boolean;
+			info: boolean;
+			page: boolean;
+			list: boolean;
 			add: boolean;
 		};
 		/**
@@ -2596,55 +2596,55 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
-	interface HesuanHesuan_count {
+	interface HesuanNotice_detail {
 		/**
-		 * 删除
+		 * list
 		 */
-		delete(data?: any): Promise<any>;
+		list(data?: any): Promise<any[]>;
 		/**
-		 * 修改
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * 单个信息
-		 */
-		info(data?: any): Promise<HesuanCountEntity>;
-		/**
-		 * 分页查询
+		 * page
 		 */
 		page(data?: any): Promise<{
 			pagination: { size: number; page: number; total: number };
-			list: HesuanCountEntity[];
+			list: any[];
 			[key: string]: any;
 		}>;
 		/**
-		 * 列表查询
+		 * info
 		 */
-		list(data?: any): Promise<HesuanCountEntity[]>;
+		info(data?: any): Promise<any>;
 		/**
-		 * 新增
+		 * update
+		 */
+		update(data?: any): Promise<any>;
+		/**
+		 * delete
+		 */
+		delete(data?: any): Promise<any>;
+		/**
+		 * add
 		 */
 		add(data?: any): Promise<any>;
 		/**
 		 * 权限标识
 		 */
 		permission: {
-			delete: string;
-			update: string;
-			info: string;
-			page: string;
 			list: string;
+			page: string;
+			info: string;
+			update: string;
+			delete: string;
 			add: string;
 		};
 		/**
 		 * 权限状态
 		 */
 		_permission: {
-			delete: boolean;
-			update: boolean;
-			info: boolean;
-			page: boolean;
 			list: boolean;
+			page: boolean;
+			info: boolean;
+			update: boolean;
+			delete: boolean;
 			add: boolean;
 		};
 		/**
@@ -2885,9 +2885,9 @@ declare namespace Eps {
 		demo: { goods: DemoGoods };
 		dict: { info: DictInfo; type: DictType };
 		hesuan: {
-			notice_detail: HesuanNotice_detail;
-			notice_intro: HesuanNotice_intro;
 			hesuan_count: HesuanHesuan_count;
+			notice_intro: HesuanNotice_intro;
+			notice_detail: HesuanNotice_detail;
 		};
 		space: { info: SpaceInfo; type: SpaceType };
 		task: { info: TaskInfo };

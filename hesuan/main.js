@@ -4,7 +4,12 @@ import App from './App'
 import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
-
+import store from '@/store/store.js'
+//引入公用组件 登录模块
+// import login from '@/components/login.vue'
+// Vue.component("login",login)
+import uView from '@/uni_modules/uview-ui'
+Vue.use(uView)
 try {
   function isPromise(obj) {
     return (
@@ -34,7 +39,8 @@ try {
 } catch (error) { }
 
 const app = new Vue({
-  ...App
+  ...App,
+  store
 })
 app.$mount()
 // #endif
