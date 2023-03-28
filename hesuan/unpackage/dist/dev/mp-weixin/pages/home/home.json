@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "核酸检测管理系统",
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "uchart": "/components/uchart/uchart",
-    "newsbox": "/components/newsbox/newsbox"
-  }
-}

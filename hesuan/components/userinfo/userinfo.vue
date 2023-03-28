@@ -45,7 +45,7 @@
 			},
 			goToHesuanHistory(){
 				uni.navigateTo({
-					url:'/pages/detail//hesuanHistory'
+					url:'/pages/detail/hesuanHistory'
 				})
 			}
 		}

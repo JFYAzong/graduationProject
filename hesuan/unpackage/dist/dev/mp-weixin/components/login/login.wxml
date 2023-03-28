@@ -1,1 +1,0 @@
-<view class="container"><uni-icons vue-id="692f7a2e-1" type="contact" size="100" color="#AFAFAF" bind:__l="__l"></uni-icons><button class="btn-login" type="primary" data-event-opts="{{[['tap',[['getUserProfile']]]]}}" bindtap="__e">一键登录</button><text class="tip-text">登录获取个人信息</text></view>

@@ -1,1 +1,0 @@
-<view class="detail"><view class="title">{{''+title+''}}</view><view class="info"><view class="authot">{{'编辑：'+author+''}}</view><view class="time">{{''+time+''}}</view></view><view class="content">{{''+detail+''}}</view><view class="pic"><image src="{{pic}}" mode></image></view></view>
