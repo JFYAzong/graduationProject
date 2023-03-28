@@ -21,15 +21,25 @@ export class UserInfoController extends BaseController {
    * @param params
    */
  @Post('/setuser')
- async userInfoPost(@Param() openid: string, avatar: string, wechatName: string):Promise<WechatUsersEntity>{
+ async userInfoPost(@Param() openid: string, avatar: string, wechatName: string, userName:string, userNumber: string, department: string):Promise<WechatUsersEntity>{
   //  return this.ctx.request.body
   //把前端返回的微信头像，微信昵称通过openid存入user表中
   openid = await this.ctx.request.body.openid
   wechatName = await this.ctx.request.body.nickName
   avatar = await this.ctx.request.body.avatarUrl
+  userName = await this.ctx.request.body.userName
+  userNumber = await this.ctx.request.body.userNumber
+  department = await this.ctx.request.body.department
   let user = await this.WechatUsersEntity.findOne({openid})
-  user.wechatName = wechatName
-  user.avatar = avatar
+  if(wechatName && avatar){
+    user.wechatName = wechatName
+    user.avatar = avatar
+  }
+  if(userName && userNumber && department){
+    user.userName = userName
+    user.userNumber = userNumber
+    user.department = department
+  }
   user = await this.WechatUsersEntity.save(user)
   return user
  }

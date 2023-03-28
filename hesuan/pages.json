@@ -11,7 +11,8 @@
 		{
 			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "核酸检测管理系统"
+				"navigationBarTitleText": "核酸检测管理系统",
+				"enablePullDownRefresh": true
 			}
 		},{
 			"path": "pages/search/search",
@@ -28,7 +29,24 @@
             "path" : "pages/detail/detail",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "公告详情",
+                "navigationBarTitleText": "公告详情"
+            }
+            
+        }
+        ,{
+            "path" : "pages/detail/updataUserMessage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/detail/hesuanHistory",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
                 "enablePullDownRefresh": false
             }
             

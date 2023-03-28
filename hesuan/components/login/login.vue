@@ -22,7 +22,6 @@
 			...mapState('m_user', ['userinfo']),
 			//用户授权以后获取用户基本信息
 			getUserProfile(e) {
-				const that = this
 				uni.getUserProfile({
 					desc: '获取用户信息',
 					success: (res) => {

@@ -3,7 +3,9 @@
     "pages/home/home",
     "pages/search/search",
     "pages/my/my",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/detail/updataUserMessage",
+    "pages/detail/hesuanHistory"
   ],
   "subPackages": [],
   "window": {

@@ -927,6 +927,49 @@ declare namespace Eps {
 		[key: string]: any;
 	}
 
+	interface WechatUsersEntity {
+		/**
+		 * ID
+		 */
+		id?: number;
+		/**
+		 * 用户登录凭证
+		 */
+		openid?: string;
+		/**
+		 * 微信头像
+		 */
+		avatar?: string;
+		/**
+		 * 微信昵称
+		 */
+		wechatName?: string;
+		/**
+		 * 姓名
+		 */
+		userName?: string;
+		/**
+		 * 学号
+		 */
+		userNumber?: string;
+		/**
+		 * 院系
+		 */
+		department?: string;
+		/**
+		 * 创建时间
+		 */
+		createTime?: Date;
+		/**
+		 * 更新时间
+		 */
+		updateTime?: Date;
+		/**
+		 * 任意键值
+		 */
+		[key: string]: any;
+	}
+
 	interface SpaceInfoEntity {
 		/**
 		 * ID
@@ -2653,6 +2696,63 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
+	interface HesuanWechat_users {
+		/**
+		 * 删除
+		 */
+		delete(data?: any): Promise<any>;
+		/**
+		 * 修改
+		 */
+		update(data?: any): Promise<any>;
+		/**
+		 * 单个信息
+		 */
+		info(data?: any): Promise<WechatUsersEntity>;
+		/**
+		 * 分页查询
+		 */
+		page(data?: any): Promise<{
+			pagination: { size: number; page: number; total: number };
+			list: WechatUsersEntity[];
+			[key: string]: any;
+		}>;
+		/**
+		 * 列表查询
+		 */
+		list(data?: any): Promise<WechatUsersEntity[]>;
+		/**
+		 * 新增
+		 */
+		add(data?: any): Promise<any>;
+		/**
+		 * 权限标识
+		 */
+		permission: {
+			delete: string;
+			update: string;
+			info: string;
+			page: string;
+			list: string;
+			add: string;
+		};
+		/**
+		 * 权限状态
+		 */
+		_permission: {
+			delete: boolean;
+			update: boolean;
+			info: boolean;
+			page: boolean;
+			list: boolean;
+			add: boolean;
+		};
+		/**
+		 * 请求
+		 */
+		request: Service["request"];
+	}
+
 	interface SpaceInfo {
 		/**
 		 * 删除
@@ -2888,6 +2988,7 @@ declare namespace Eps {
 			hesuan_count: HesuanHesuan_count;
 			notice_intro: HesuanNotice_intro;
 			notice_detail: HesuanNotice_detail;
+			wechat_users: HesuanWechat_users;
 		};
 		space: { info: SpaceInfo; type: SpaceType };
 		task: { info: TaskInfo };

@@ -101,10 +101,10 @@ var components
 try {
   components = {
     uchart: function () {
-      return __webpack_require__.e(/*! import() | components/uchart/uchart */ "components/uchart/uchart").then(__webpack_require__.bind(null, /*! @/components/uchart/uchart.vue */ 193))
+      return __webpack_require__.e(/*! import() | components/uchart/uchart */ "components/uchart/uchart").then(__webpack_require__.bind(null, /*! @/components/uchart/uchart.vue */ 205))
     },
     newsbox: function () {
-      return __webpack_require__.e(/*! import() | components/newsbox/newsbox */ "components/newsbox/newsbox").then(__webpack_require__.bind(null, /*! @/components/newsbox/newsbox.vue */ 200))
+      return __webpack_require__.e(/*! import() | components/newsbox/newsbox */ "components/newsbox/newsbox").then(__webpack_require__.bind(null, /*! @/components/newsbox/newsbox.vue */ 212))
     },
   }
 } catch (e) {

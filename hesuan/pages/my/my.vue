@@ -1,6 +1,5 @@
 <template>
-	<view >
-		<!-- {{JSON.stringify(userinfo)}} -->
+	<view class="my-container">
 		<login v-if="!userinfo.avatar"></login>
 		<userinfo v-else></userinfo>
 	</view>
@@ -31,12 +30,8 @@
 	}
 </script>
 
-<style>
-.logo{
-	position: absolute;
-	top: 0;
-	left: 0;
+<style lang="scss">
+page, .my-container{
 	height: 100%;
-	width: 100%;
 }
 </style>
