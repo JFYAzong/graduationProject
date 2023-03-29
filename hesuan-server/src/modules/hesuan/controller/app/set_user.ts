@@ -1,7 +1,6 @@
 import { ALL, App, Body, Inject, Param, Post, Provide } from '@midwayjs/decorator';
 import { CoolController, BaseController } from '@cool-midway/core';
 import { Context } from '@midwayjs/koa';
-import { MiniProgramApi } from 'tnwx'
 import { Repository } from 'typeorm';
 import { InjectEntityModel } from '@midwayjs/orm';
 import { WechatUsersEntity } from '../../entity/wechat_users';
@@ -23,7 +22,6 @@ export class UserInfoController extends BaseController {
  @Post('/setuser')
  async userInfoPost(@Param() openid: string, avatar: string, wechatName: string, userName:string, userNumber: string, department: string):Promise<WechatUsersEntity>{
   //  return this.ctx.request.body
-  //把前端返回的微信头像，微信昵称通过openid存入user表中
   openid = await this.ctx.request.body.openid
   wechatName = await this.ctx.request.body.nickName
   avatar = await this.ctx.request.body.avatarUrl
@@ -31,10 +29,12 @@ export class UserInfoController extends BaseController {
   userNumber = await this.ctx.request.body.userNumber
   department = await this.ctx.request.body.department
   let user = await this.WechatUsersEntity.findOne({openid})
+  //把前端返回的微信头像，微信昵称存入user表中
   if(wechatName && avatar){
     user.wechatName = wechatName
     user.avatar = avatar
   }
+  //把前端返回的用户姓名，学号，院系存入user表中
   if(userName && userNumber && department){
     user.userName = userName
     user.userNumber = userNumber

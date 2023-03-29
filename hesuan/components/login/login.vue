@@ -36,7 +36,7 @@
 								// openid:this.userinfo.openid
 							},
 							success: (reqRes) => {
-								console.log('reqRes',reqRes)
+								// console.log('reqRes',reqRes)
 								this.updateUserInfo(reqRes.data)
 							}
 						})

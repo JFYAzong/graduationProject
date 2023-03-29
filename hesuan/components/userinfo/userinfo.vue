@@ -16,6 +16,10 @@
 					<text>核酸报告历史查询</text>
 					<uni-icons type="arrowright" size="15"></uni-icons>
 				</view>
+				<view class="panel-list-item" @click="logout()">
+					<text>退出登录</text>
+					<uni-icons type="arrowright" size="15"></uni-icons>
+				</view>
 			</view>
 		</view>
 
@@ -38,6 +42,7 @@
 			...mapState('m_user', ['userinfo'])
 		},
 		methods: {
+			...mapMutations('m_user', ['updateUserInfo']),
 			goToUserMessage(){
 				uni.navigateTo({
 					url:'/pages/detail/updataUserMessage'
@@ -47,6 +52,26 @@
 				uni.navigateTo({
 					url:'/pages/detail/hesuanHistory'
 				})
+			},
+			async logout(){
+				const modalResult = await uni.showModal({
+					title: '提示',
+					content: '确认退出登录吗？'
+				}).catch(err => err)
+
+				if(modalResult.confirm){
+					uni.request({
+						url:'http://localhost:8000/app/hesuan/logout/logout',
+						method:'POST',
+						data:{
+							openid:JSON.parse(uni.getStorageSync('userInfo')).openid
+						},
+						success: (reqRes) => {
+							// console.log('reqRes',reqRes)
+							this.updateUserInfo(reqRes.data)
+						}
+					})
+				}
 			}
 		}
 	}
