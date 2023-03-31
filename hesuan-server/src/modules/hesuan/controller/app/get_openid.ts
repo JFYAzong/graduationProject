@@ -21,7 +21,7 @@ export class UserInfoController extends BaseController {
    * @param params
    */
  @Post('/getopenid')
- async userInfoPost(@Param() openid: string): Promise<WechatUsersEntity>{
+ async getOpenId(@Param() openid: string): Promise<WechatUsersEntity>{
    openid = (await MiniProgramApi.code2Session('wx94365389ae67e384','e5eb0ee2f4e93080e05bc90234e4079b',this.ctx.request.body.code)).openid
    //openid查询user表，没有就创建然后查询返回，有就查询返回。
   //  console.log(openid)

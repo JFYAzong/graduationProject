@@ -20,7 +20,7 @@ export class UserInfoController extends BaseController {
    * @param params
    */
  @Post('/setuser')
- async userInfoPost(@Param() openid: string, avatar: string, wechatName: string, userName:string, userNumber: string, department: string):Promise<WechatUsersEntity>{
+ async setUser(@Param() openid: string, avatar: string, wechatName: string, userName:string, userNumber: string, department: string):Promise<WechatUsersEntity>{
   //  return this.ctx.request.body
   openid = await this.ctx.request.body.openid
   wechatName = await this.ctx.request.body.nickName

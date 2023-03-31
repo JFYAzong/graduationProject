@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@dcloudio/uni-ui": "^1.4.26",
+    "lodash": "^4.17.21",
+    "uqrcodejs": "^4.0.6",
     "uview-ui": "^2.0.31"
   }
 }

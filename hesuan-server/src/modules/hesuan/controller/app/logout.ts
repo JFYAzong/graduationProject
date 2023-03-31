@@ -20,7 +20,7 @@ export class UserInfoController extends BaseController {
    * @param params
    */
  @Post('/logout')
- async userInfoPost(@Param() openid: string):Promise<WechatUsersEntity>{
+ async logout(@Param() openid: string):Promise<WechatUsersEntity>{
   //将微信的昵称和头像清空
   openid = await this.ctx.request.body.openid
   let user = await this.WechatUsersEntity.findOne({openid})

@@ -888,6 +888,45 @@ declare namespace Eps {
 		[key: string]: any;
 	}
 
+	interface HesuanReportEntity {
+		/**
+		 * ID
+		 */
+		id?: number;
+		/**
+		 * 姓名
+		 */
+		name?: string;
+		/**
+		 * 学号
+		 */
+		number?: string;
+		/**
+		 * 检测医院
+		 */
+		hospital?: string;
+		/**
+		 * 报告时间
+		 */
+		reportTime?: string;
+		/**
+		 * 报告结果
+		 */
+		reportResult?: string;
+		/**
+		 * 创建时间
+		 */
+		createTime?: Date;
+		/**
+		 * 更新时间
+		 */
+		updateTime?: Date;
+		/**
+		 * 任意键值
+		 */
+		[key: string]: any;
+	}
+
 	interface NoticeIntroEntity {
 		/**
 		 * ID
@@ -2639,6 +2678,63 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
+	interface HesuanWechat_users {
+		/**
+		 * 删除
+		 */
+		delete(data?: any): Promise<any>;
+		/**
+		 * 修改
+		 */
+		update(data?: any): Promise<any>;
+		/**
+		 * 单个信息
+		 */
+		info(data?: any): Promise<WechatUsersEntity>;
+		/**
+		 * 分页查询
+		 */
+		page(data?: any): Promise<{
+			pagination: { size: number; page: number; total: number };
+			list: WechatUsersEntity[];
+			[key: string]: any;
+		}>;
+		/**
+		 * 列表查询
+		 */
+		list(data?: any): Promise<WechatUsersEntity[]>;
+		/**
+		 * 新增
+		 */
+		add(data?: any): Promise<any>;
+		/**
+		 * 权限标识
+		 */
+		permission: {
+			delete: string;
+			update: string;
+			info: string;
+			page: string;
+			list: string;
+			add: string;
+		};
+		/**
+		 * 权限状态
+		 */
+		_permission: {
+			delete: boolean;
+			update: boolean;
+			info: boolean;
+			page: boolean;
+			list: boolean;
+			add: boolean;
+		};
+		/**
+		 * 请求
+		 */
+		request: Service["request"];
+	}
+
 	interface HesuanNotice_detail {
 		/**
 		 * list
@@ -2696,7 +2792,7 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
-	interface HesuanWechat_users {
+	interface HesuanHesuan_report {
 		/**
 		 * 删除
 		 */
@@ -2708,19 +2804,19 @@ declare namespace Eps {
 		/**
 		 * 单个信息
 		 */
-		info(data?: any): Promise<WechatUsersEntity>;
+		info(data?: any): Promise<HesuanReportEntity>;
 		/**
 		 * 分页查询
 		 */
 		page(data?: any): Promise<{
 			pagination: { size: number; page: number; total: number };
-			list: WechatUsersEntity[];
+			list: HesuanReportEntity[];
 			[key: string]: any;
 		}>;
 		/**
 		 * 列表查询
 		 */
-		list(data?: any): Promise<WechatUsersEntity[]>;
+		list(data?: any): Promise<HesuanReportEntity[]>;
 		/**
 		 * 新增
 		 */
@@ -2987,8 +3083,9 @@ declare namespace Eps {
 		hesuan: {
 			hesuan_count: HesuanHesuan_count;
 			notice_intro: HesuanNotice_intro;
-			notice_detail: HesuanNotice_detail;
 			wechat_users: HesuanWechat_users;
+			notice_detail: HesuanNotice_detail;
+			hesuan_report: HesuanHesuan_report;
 		};
 		space: { info: SpaceInfo; type: SpaceType };
 		task: { info: TaskInfo };

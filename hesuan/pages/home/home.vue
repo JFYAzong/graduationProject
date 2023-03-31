@@ -118,7 +118,7 @@
 							method: 'POST',
 							data: loginRes,
 							success: (res) => {
-								console.log(res.data)
+								// console.log(res.data)
 								that.updateUserInfo(res.data)
 							}
 						})
