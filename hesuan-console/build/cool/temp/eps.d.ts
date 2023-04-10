@@ -2621,6 +2621,63 @@ declare namespace Eps {
 		request: Service["request"];
 	}
 
+	interface HesuanHesuan_report {
+		/**
+		 * 删除
+		 */
+		delete(data?: any): Promise<any>;
+		/**
+		 * 修改
+		 */
+		update(data?: any): Promise<any>;
+		/**
+		 * 单个信息
+		 */
+		info(data?: any): Promise<HesuanReportEntity>;
+		/**
+		 * 分页查询
+		 */
+		page(data?: any): Promise<{
+			pagination: { size: number; page: number; total: number };
+			list: HesuanReportEntity[];
+			[key: string]: any;
+		}>;
+		/**
+		 * 列表查询
+		 */
+		list(data?: any): Promise<HesuanReportEntity[]>;
+		/**
+		 * 新增
+		 */
+		add(data?: any): Promise<any>;
+		/**
+		 * 权限标识
+		 */
+		permission: {
+			delete: string;
+			update: string;
+			info: string;
+			page: string;
+			list: string;
+			add: string;
+		};
+		/**
+		 * 权限状态
+		 */
+		_permission: {
+			delete: boolean;
+			update: boolean;
+			info: boolean;
+			page: boolean;
+			list: boolean;
+			add: boolean;
+		};
+		/**
+		 * 请求
+		 */
+		request: Service["request"];
+	}
+
 	interface HesuanNotice_intro {
 		/**
 		 * 删除
@@ -2784,63 +2841,6 @@ declare namespace Eps {
 			info: boolean;
 			update: boolean;
 			delete: boolean;
-			add: boolean;
-		};
-		/**
-		 * 请求
-		 */
-		request: Service["request"];
-	}
-
-	interface HesuanHesuan_report {
-		/**
-		 * 删除
-		 */
-		delete(data?: any): Promise<any>;
-		/**
-		 * 修改
-		 */
-		update(data?: any): Promise<any>;
-		/**
-		 * 单个信息
-		 */
-		info(data?: any): Promise<HesuanReportEntity>;
-		/**
-		 * 分页查询
-		 */
-		page(data?: any): Promise<{
-			pagination: { size: number; page: number; total: number };
-			list: HesuanReportEntity[];
-			[key: string]: any;
-		}>;
-		/**
-		 * 列表查询
-		 */
-		list(data?: any): Promise<HesuanReportEntity[]>;
-		/**
-		 * 新增
-		 */
-		add(data?: any): Promise<any>;
-		/**
-		 * 权限标识
-		 */
-		permission: {
-			delete: string;
-			update: string;
-			info: string;
-			page: string;
-			list: string;
-			add: string;
-		};
-		/**
-		 * 权限状态
-		 */
-		_permission: {
-			delete: boolean;
-			update: boolean;
-			info: boolean;
-			page: boolean;
-			list: boolean;
 			add: boolean;
 		};
 		/**
@@ -3082,10 +3082,10 @@ declare namespace Eps {
 		dict: { info: DictInfo; type: DictType };
 		hesuan: {
 			hesuan_count: HesuanHesuan_count;
+			hesuan_report: HesuanHesuan_report;
 			notice_intro: HesuanNotice_intro;
 			wechat_users: HesuanWechat_users;
 			notice_detail: HesuanNotice_detail;
-			hesuan_report: HesuanHesuan_report;
 		};
 		space: { info: SpaceInfo; type: SpaceType };
 		task: { info: TaskInfo };
